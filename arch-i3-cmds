@@ -1,0 +1,7 @@
+* WiFi connect - iwctl
+```
+$ iwctl
+[iwd]# station list
+[iwd]# station wlan0 connect <tab..
+enter passphrase..
+```

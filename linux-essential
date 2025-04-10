@@ -1,0 +1,48 @@
+#!/bin/bash
+
+apt update && apt install -y curl wget
+curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add - 
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
+sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+
+apt update
+# Essential packages for your linux.
+#Also take note of dependecy issues.
+
+##Terminator, vim, git,  emacs, vlc, virtualbox, gparted, some code-editor(VS-code), i3, feh, libreoffice, google-chrome, git, xclip, redshift, mons, zsh, transmission, w3m, ranger, curl, autoconf, automake
+##playerctl, spotify, scrot, openssh-server, lxappearance, spotify, fonts-font-awesome
+
+
+apt install -y terminator vim git emacs vlc virtualbox gparted feh git xclip redshift zsh transmission w3m ranger curl autoconf automake playerctl scrot openssh-server lxappearance fonts-font-awesome evince gdb imagemagick
+
+apt install -y spotify-client
+
+apt install -y  apt-transport-https code
+# --------------------------
+## i3 dependencies
+apt install -y i3 i3blocks dmenu rofi
+# imagemagick for i3lock-fancy
+# enable single-tap click - https://askubuntu.com/questions/903206/unable-to-set-default-values-for-synps-2-synaptic
+# --------------------------
+## Vundle for vim
+## Prezto for zsh
+
+# --------------------------
+
+##misc
+#handle what power key does see logind.conf- https://superuser.com/questions/699905/change-behavior-of-linux-power-button
+# install light for brightness control with appropriate privileges
+#
+
+# ----------------------------
+
+
+# Sound Equalizer - # PulseEffect - better
+# pulseaudio-equalizer - alternative
+	## add follwing two lines in  /etc/pulse/default.pa
+	# load-module module-equalizer-sink
+	# load-module module-dbus-protocol
+	# and do $ pulseaudio --kill && pulseaudio --start 
